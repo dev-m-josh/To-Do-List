@@ -1,0 +1,169 @@
+*{
+    font-family: "poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+/*body*/
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+}
+
+/*Container*/
+.container{
+    max-width: 900px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    padding: 10px;
+}
+
+.holder{
+    width: 100%;
+}
+
+/*Header*/
+.header{
+    max-width: 300px;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header h1{
+    color: #002763;
+}
+
+/*header image*/
+.header img{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+/*add-to-list*/
+.add-to-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(231, 228, 228);
+    border-radius: 30px;
+}
+
+/*type the activity to add to list*/
+.add-to-list input{
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+/*Onclick it will add the activity to list*/
+.add-to-list button{
+    border: none;
+    background-color: #ff5945;
+    color: #fff;
+    font-size: 16px;
+    padding: 16px 50px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/*List of activities to be carried out*/
+.todo-list{
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: rgb(247, 247, 247);
+}
+
+/*the whole activity and edits*/
+.list{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/*Holding checkbox and the task*/
+.task{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+/*Checkbox*/
+.task input{
+    width: 20px;
+    height: 20px;
+}
+
+/*To be added to the activity when accomplished*/
+.checked{
+    text-decoration: line-through;
+}
+
+/*Delete the activity*/
+.delete{
+    display: none;
+}
+
+/*The activity name*/
+.list p{
+    font-size: 16px;
+    color: rgb(32, 25, 25);
+}
+
+/*Onclick it will erase the whole task*/
+.list button{
+    justify-self: flex-end;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+/*The delete icon in the button*/
+.fa-solid{
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
