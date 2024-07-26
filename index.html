@@ -15,24 +15,10 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ03syKMnp5laK_WQoaUWgcghBgxRLJY6r3Vg&s" alt="">
         </div>
         <div class="add-to-list">
-            <input type="text" id="input-box" placeholder="Add your text">
-            <button onclick="addTask()">Add</button>
+            <input type="text" id="input-box" placeholder="Add your text...." value="">
+            <button onclick="addTask()" id="addTask">Add</button>
         </div>
-        <div class="todo-list">
-            <li id="list" class="list">
-               <div class="task">
-                <input onclick="finishedActivity()" id="checkbox" type="checkbox">
-                <p id="activity">Task 1</p>
-               </div>
-                <button onclick="deleteActivity()" id="delete"><i class="fa-solid fa-xmark"></i></button>
-            </li>
-            <li class="list">
-               <div class="task">
-                <input type="checkbox">
-                <p>Task 2</p>
-               </div>
-                <button><i class="fa-solid fa-xmark"></i></button>
-            </li>
+        <div id="todo-list" class="todo-list">
             
         </div>
     </div>

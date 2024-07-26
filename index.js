@@ -1,42 +1,64 @@
-//declare the checkbox
-let checkbox = document.getElementById("checkbox");
 
-//declare the activity
-let activity = document.getElementById("activity");
+let toDoList = document.getElementById("todo-list");
 
-//declare the delete button
-let deleteButton = document.getElementById("delete")
+//Declare the input 
+let inputBox = document.getElementById("input-box")
 
-//declare id= list
-let singleActivity = document.getElementById("list");
+//Declare the Add button
+let addButton = document.getElementById("addTask");
 
 
-//Calling the markActivityDone function when the checkbox is clicked
-function finishedActivity() {
-    checkbox.addEventListener("click", markActivityDone ())
+let activityList = [];
+
+
+//addTask function
+function addTask() {
+    if (inputBox.value === "") {
+        alert("You must write something!")
+    }else{
+        //a div hosting the activity
+         let taskList = document.createElement("div");
+         taskList.classList.add("list");
+         taskList.setAttribute("id", "list");
+
+         //a div hosting the checkbox and activity
+         let task = document
+         .createElement("div");
+         task.classList.add("task");
+         
+         //an input
+         let input = document.createElement("input");
+         //input.setAttribute("onclick", "finishedActivity()");
+         input.setAttribute("id", "checkbox)");
+         input.setAttribute("type", "checkbox")
+
+         //display the input
+        let taskName = document.createElement("p");
+        taskName.innerHTML = inputBox.value;
+
+        //append children to task div
+        task.append(input, taskName)
+        
+        //creat button
+        let buttonDelete = document.createElement("button");
+        //buttonDelete.setAttribute("onclick", "deleteActivity()");
+        buttonDelete.setAttribute("id", "delete");
+
+        buttonDelete.innerHTML= `<i class="fa-solid fa-xmark"></i>`;
+
+        //Append to button
+        taskList.append(task, buttonDelete);
+        toDoList.append(taskList);
+        //Erase the content in the input value when the add button is clicked
+        inputBox.value = "";
+
+        activityList.push(taskName.innerHTML)
+        
+        
+    }
+    
+
 }
-
-//Toggle class checked to mark as done or unmark
-function markActivityDone () {
-    activity.classList.toggle("checked")
-}
-
-//delete the activity
-function deleteActivity() {
-    deleteButton.addEventListener("click", myFunction())
-}
-
-
-function myFunction() {
-    singleActivity.classList.add("delete")
-}
-
-
-
-
-
-
-
 
 
 
