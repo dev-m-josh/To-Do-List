@@ -127,10 +127,14 @@ body{
 }
 
 /*Onclick it will erase the whole task*/
-.list button{
+.delete-Task{
     justify-self: flex-end;
-    width: 30px;
     height: 30px;
+    font-size: 16px;
+    border: none;
+    color: white;
+    background-color: rgb(228, 92, 92);
+    border-radius: 5px;
     cursor: pointer;
 }
 

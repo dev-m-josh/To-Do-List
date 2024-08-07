@@ -1,362 +1,92 @@
-let activityList = [
-    {
-        id: 1,
-        task: 'washing dishes',
-        status: true,
-        Date: '28/08/2024',
-    },
-    {
-        id: '1',
-        task: 'codding',
-        status: true,
-        Date: '28/08/2024',
-    },
-    {
-        id: 1,
-        task: 'taking on tutorials',
-        status: true,
-        Date: '28/08/2024',
-    },
-];
+const addTaskBtn = document.getElementById("addTask");
+const inputBox = document.getElementById("input-box");
+const toDoList = document.getElementById("todo-list");
+//call this function to display tasks that are already in the localStrorage
+loadTasks()
 
+//Add button adds the tasks in the list
+addTaskBtn.addEventListener("click", addTask)
 
-
-
-let toDoList = document.getElementById("todo-list");
-
-//Declare the input 
-let inputBox = document.getElementById("input-box")
-
-//Prevent the page from refresh
-inputBox.addEventListener("submit", (e) => {
-    e.preventDefault();
-})
-//Declare the Add button
-let addButton = document.getElementById("addTask");
-
-
-
-
-//addTask function
+//adding the task to list
 function addTask() {
-    if (inputBox.value === "") {
-        alert("You must write something!")
+    //removing any white spaces
+    const task = inputBox.value.trim();
+
+    if (task) {
+        creatTaskEle(task);
+        //call the function to save changes to the local strorage
+        saveTasks()
     }else{
-        taskElement()  
+        //If inputBox.value is empty show an alert
+        alert("Add a Task!")
     }
+}
+
+
+//Creat an HTML element each time a task is added
+function creatTaskEle(task) {
+    //a div hosting the activity
+    let taskList = document.createElement("div");
+    taskList.classList.add("list");
+
+    //a div hosting the checkbox and activity
+    let taskDiv = document.createElement("div");
+    taskDiv.classList.add("task");
     
+    //an input
+    let checkBox = document.createElement("input");
+    checkBox.setAttribute("type", "checkbox");
 
+    //marking a task as completed
+    checkBox.addEventListener('click', function(){
+        taskName.classList.toggle('checked')
+    })
+
+    //display the input
+   let taskName = document.createElement("p");
+   taskName.innerText = task;
+
+   //append children to task div
+   taskDiv.append(checkBox, taskName)
+   
+   //creat button
+   let buttonDelete = document.createElement("button");
+   buttonDelete.classList.add("delete-Task")
+   buttonDelete.innerHTML= "Delete";
+
+   //deleting the task and updating the local strorage
+   buttonDelete.addEventListener('click', function () {
+    toDoList.removeChild(taskList);
+    saveTasks();
+   })
+
+   //Append to button
+   taskList.append(taskDiv, buttonDelete);
+   toDoList.appendChild(taskList);
+   //Erase the content in the input value when the add button is clicked
+   inputBox.value = "";
+   inputBox.focus();
 }
 
-//function creating a new element
-function taskElement(item) {
+//Saving the added tasks to the local storage
+function saveTasks() {
+    //an array where the tasks will be stored/pushed to
+    let tasksArray = [];
+    //select all the tasks and push them to the array
+    toDoList.querySelectorAll('p').forEach(function (taskItem) {
+        tasksArray.unshift(taskItem.innerText.trim());
+    });
 
-    //Generate new id each time
-    let randomId = Math.floor(Math.random() *100);
-
-        //a div hosting the activity
-        let taskList = document.createElement("div");
-        taskList.classList.add("list");
-        taskList.setAttribute("id", "list");
-
-        //a div hosting the checkbox and activity
-        let task = document
-        .createElement("div");
-        task.classList.add("task");
-        
-        //an input
-        let checkBox = document.createElement("input");
-        checkBox.setAttribute("type", "checkbox");
-
-        //display the input
-       let taskName = document.createElement("p");
-       taskName.setAttribute("id", randomId)
-       taskName.innerHTML = inputBox.value;
-       
-
-       //append children to task div
-       task.append(checkBox, taskName)
-       
-       //creat button
-       let buttonDelete = document.createElement("button");
-       buttonDelete.innerHTML= `<i class="fa-solid fa-xmark"></i>`;
-
-       //Append to button
-       taskList.append(task, buttonDelete);
-       toDoList.append(taskList);
-       //Erase the content in the input value when the add button is clicked
-       inputBox.value = "";
-
-       objectData = {
-        id: taskName.id,
-        status:false,
-        task: taskName.innerHTML,
-        Date: new Date()
-       } 
-
-       //mark as done
-       checkBox.addEventListener("click", () => {
-            taskName.classList.toggle("checked")
-       })
-
-       
-
-       activityList.unshift(objectData)
-       console.log(activityList)
+    //setting where to store the data
+    localStorage.setItem('tasks', JSON.stringify(tasksArray))
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//load and display tasks that are already in the local storage each time a page loades
+function loadTasks() {
+    const localTasks = JSON.parse(localStorage.getItem("tasks"));
+
+    //get each task from the local strorage
+    localTasks.forEach(creatTaskEle);
+}
 
 
